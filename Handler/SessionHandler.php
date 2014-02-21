@@ -29,6 +29,12 @@ class SessionHandler implements SessionHandlerInterface {
     protected $handler;
 
     /**
+     * @var array sessionId => session
+     */
+    private $readSessions;
+
+
+    /**
      * @param \Aws\DynamoDb\DynamoDbClient $client
      * @param $config array
      */
@@ -99,6 +105,8 @@ class SessionHandler implements SessionHandlerInterface {
      */
     public function read($session_id)
     {
+        $session = $this->handler->read($session_id);
+        $this->readSessions[$session_id] = $session;
         return $this->handler->read($session_id);
     }
 
@@ -111,6 +119,10 @@ class SessionHandler implements SessionHandlerInterface {
      */
     public function write($session_id, $session_data)
     {
+        if (isset($this->readSessions[$session_id]) && $session_data === $this->readSessions[$session_id]) {
+            return true;
+        }
+
         return $this->handler->write($session_id, $session_data);
     }
 
