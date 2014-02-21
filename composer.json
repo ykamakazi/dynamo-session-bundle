@@ -1,11 +1,11 @@
 {
-    "name": "gwk/dynamo-session-bundle",
+    "name": "ykamakazi/dynamo-session-bundle",
     "description": "DynamoDB Session Handler Bundle for Symfony 2",
     "keywords": ["symfony", "bundle", "session", "aws", "dynamodb"],
     "authors": [
         {
-            "name": "Gijs Kunze",
-            "email": "gwkunze@gmail.com"
+            "name": "Ykamakazi",
+            "email": "paul.ankur@gmail.com"
         }
     ],
     "require": {
